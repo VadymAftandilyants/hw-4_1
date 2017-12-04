@@ -17,18 +17,17 @@ public class CreateProductTest extends BaseTest {
     @Test(dataProvider = "getLoginData")
     public void login(String login, String password) {
         // TODO implement test for product creation
+        log("Logging into admin panel");
         actions.login(login, password);
-    }
-    @Test(dependsOnMethods = "login")
-    public void createNP() {
-        actions.createProduct(ProductData.generate());
     }
 
 //     TODO implement logic to check product visibility on website
 
-    @Test(dataProviderClass = ProductData.class)
-    public void checkOnSite(String name, String qty, String price) {
-        actions.checkOnSite(name, qty, price);
+    @Test(dependsOnMethods = "login")
+    public void createNP() {
+        log("Creating new product");
+        actions.createProduct(ProductData.generate());
+    }
 
 }
-}
+

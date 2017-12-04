@@ -1,10 +1,11 @@
 package myprojects.automation.assignment4;
 
+import myprojects.automation.assignment4.utils.logging.CustomReporter;
 import myprojects.automation.assignment4.utils.logging.EventHandler;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
@@ -34,12 +35,8 @@ public abstract class BaseTest {
                         "webdriver.gecko.driver",
                         getResource("/geckodriver"));
                 return new FirefoxDriver();
-            case "ie":
-            case "internet explorer":
-                System.setProperty(
-                        "webdriver.ie.driver",
-                        getResource("/IEDriverServer.exe"));
-                return new InternetExplorerDriver();
+            case "safari":
+                return new SafariDriver();
             case "chrome":
             default:
                 System.setProperty(
@@ -94,9 +91,9 @@ public abstract class BaseTest {
         }
     }
 
-//    public static void log (String message) {
-//        Reporter.log(message + "<br>");
-//    }
+    public static void log (String message) {
+        CustomReporter.logAction(message + "<br>");
+    }
 }
 
 
